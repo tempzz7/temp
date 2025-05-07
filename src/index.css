@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-dark text-light-gray overflow-x-hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-dark;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary-violet/50 rounded-full transition-colors;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary-violet;
+}
+
+/* Utility classes */
+.section-container {
+  @apply w-full max-w-5xl mx-auto px-4 md:px-6;
+}
+
+/* Animation classes */
+.hover-scale {
+  @apply transition-transform duration-300 ease-out;
+}
+
+.hover-scale:hover {
+  @apply transform scale-105;
+}
+
+
+.text-gradient {
+  background: linear-gradient(90deg, #7c3aed, #a78bfa, #7c3aed);
+  background-size: 200% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes gradient-move {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient-move {
+  background-size: 200% 200%;
+  animation: gradient-move 3s ease-in-out infinite;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #0d0d0d 0%, #1a0000 100%);
+  color: #f2f2f2;
+}
+
+/* Custom red/black theme classes */
+.bg-dark {
+  background-color: #0d0d0d;
+}
+.bg-red-gradient {
+  background: linear-gradient(135deg, #1a0000 0%, #a10000 100%);
+}
+.text-red-graphic {
+  color: #ff2a2a;
+}
+.shadow-red {
+  box-shadow: 0 4px 24px 0 rgba(255,42,42,0.25);
+}
+.border-red-graphic {
+  border-color: #ff2a2a;
+}
+.hover\:bg-red-900:hover {
+  background-color: #7a0000;
+}
+
+/* Novas cores utilitárias */
+.bg-cinza-claro {
+  background-color: #f8fafc;
+}
+.text-cinza-escuro {
+  color: #18181b;
+}
+.bg-azul-principal {
+  background-color: #38bdf8;
+}
+.bg-azul-secundario {
+  background-color: #0ea5e9;
+}
+.text-azul-principal {
+  color: #38bdf8;
+}
+.text-azul-secundario {
+  color: #0ea5e9;
+}
