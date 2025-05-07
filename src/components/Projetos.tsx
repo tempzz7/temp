@@ -15,13 +15,50 @@ interface Repositorio {
 const Projetos = () => {  const [repositories, setRepositories] = useState<Repositorio[]>([]);
   const [loading, setLoading] = useState(true);
 
+  // Dados de fallback para quando a API do GitHub não estiver disponível
+  const fallbackRepos: Repositorio[] = [
+    {
+      id: 1,
+      name: 'portfolio-website',
+      description: 'Meu site de portfólio pessoal construído com React e Tailwind CSS',
+      html_url: '#',
+      language: 'TypeScript',
+      stargazers_count: 5,
+      forks_count: 2
+    },
+    {
+      id: 2,
+      name: 'task-manager-app',
+      description: 'Aplicativo de gerenciamento de tarefas com recursos de arrastar e soltar',
+      html_url: '#',
+      language: 'JavaScript',
+      stargazers_count: 3,
+      forks_count: 1
+    },
+    {
+      id: 3,
+      name: 'weather-forecast',
+      description: 'Aplicativo de previsão do tempo que usa a API OpenWeatherMap',
+      html_url: '#',
+      language: 'React',
+      stargazers_count: 7,
+      forks_count: 2
+    }
+  ];
+
   useEffect(() => {
     const fetchRepositories = async () => {
       try {
-        const response = await axios.get('https://api.github.com/users/tempzz7/repos');
+        // Usar apenas o timeout do Axios sem AbortController para evitar problemas de tipo
+        const response = await axios.get('https://api.github.com/users/tempzz7/repos', {
+          timeout: 5000
+        });
+        
         setRepositories(response.data as Repositorio[]);
       } catch (error) {
         console.error('Error fetching repositories:', error);
+        // Usar dados de fallback em caso de erro
+        setRepositories(fallbackRepos);
       } finally {
         setLoading(false);
       }
@@ -40,10 +77,9 @@ const Projetos = () => {  const [repositories, setRepositories] = useState<Repos
       
       <div className="container mx-auto px-4 relative z-10">
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
           className="text-center mb-16"
         >          <h2 className="inline-block text-4xl md:text-5xl font-extrabold mb-6 relative">
             <span className="text-gradient">Open Source</span>
@@ -83,7 +119,7 @@ const Projetos = () => {  const [repositories, setRepositories] = useState<Repos
                 {
                   name: 'Coffice',
                   description: 'A modern workspace and coffee shop management app, including reservations, menu, and customer analytics.',
-                  language: 'CSS (39.5%), JavaScript (37.6%), HTML (14.1%), Python (6.2%), PowerShell (1.4%), Gherkin (0.7%), Shell (0.5%)',
+                  language: 'Django, JavaScript',
                   html_url: 'https://github.com/coffice-g7/coffice',
                   stargazers_count: 0,
                   forks_count: 0,
@@ -92,26 +128,19 @@ const Projetos = () => {  const [repositories, setRepositories] = useState<Repos
               ].map((proj, index) => (
                 <motion.div
                   key={proj.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ delay: index * 0.1, duration: 0.5 }}
+                  initial={{ opacity: 1 }}
                   whileHover={{ y: -5 }}
                   className="group bg-gradient-to-br from-dark-gray via-dark to-dark-gray border border-primary-violet/20 rounded-xl overflow-hidden relative flex flex-col h-full"
                 >
                   <div className="absolute inset-0 bg-dark-gray/30 backdrop-blur-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div className="p-6 flex flex-col flex-grow relative z-10">
-                    <div className="flex justify-between items-start mb-3">
-                      <div className="flex items-center gap-3">
+                    <div className="flex justify-center items-center mb-3">
+                      <div className="flex flex-col items-center">
                         {proj.logo && (
-                          <span>
-                            <img src={proj.logo} alt={proj.name + ' logo'} className="w-10 h-10 object-contain" />
-                            <img src={proj.logo} alt={proj.name + ' logo'} className="w-10 h-10 object-contain" />
-                          </span>
+                          <div className="flex justify-center w-full py-4">
+                            <img src={proj.logo} alt={proj.name + ' logo'} className="w-48 h-48 object-contain transition-transform duration-300 group-hover:scale-110" />
+                          </div>
                         )}
-                        <h3 className="text-xl md:text-2xl font-bold text-primary-violet group-hover:text-accent-violet transition-colors">
-                          {proj.name}
-                        </h3>
                       </div>
                     </div>
                     <p className="text-medium-gray mb-5 flex-1 text-sm leading-relaxed">
@@ -158,10 +187,7 @@ const Projetos = () => {  const [repositories, setRepositories] = useState<Repos
               {repositories.map((repo, index) => (
                 <motion.div
                   key={repo.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ delay: index * 0.1, duration: 0.5 }}
+                  initial={{ opacity: 1 }}
                   whileHover={{ y: -5 }}
                   className="group bg-gradient-to-br from-dark-gray via-dark to-dark-gray border border-primary-violet/20 rounded-xl overflow-hidden relative flex flex-col h-full"
                 >

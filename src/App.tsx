@@ -4,6 +4,7 @@ import Hero from './components/Hero.tsx';
 import Projetos from './components/Projetos.tsx';
 import Contato from './components/Contato.tsx';
 import AnimatedSection from './components/AnimatedSection.tsx';
+import BolhasOtimizadas from './components/BolhasOtimizadas.tsx';
 
 /**
  * Componente principal da aplicação.
@@ -26,6 +27,9 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-dark text-light-gray flex flex-col">
+      {/* Bolhas roxas estouraveis */}
+      <BolhasOtimizadas />
+      
       {/* Cabeçalho fixo no topo */}
       <Cabecalho />
       
