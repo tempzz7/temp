@@ -82,18 +82,28 @@ const Hero: React.FC = () => {
             animate={{ opacity: 1, x: 0, scale: 1 }}
             transition={{ delay: 0.15, duration: 0.7 }}
             className="relative flex-shrink-0 flex justify-center items-center group w-full md:w-auto"
+            style={{
+              overflow: 'visible', // Garante que nada seja cortado
+              padding: '1.5rem', // Espaço extra para evitar corte em telas pequenas
+              boxSizing: 'border-box',
+              minWidth: '180px',
+              minHeight: '180px',
+              maxWidth: '100vw',
+              maxHeight: '100vw',
+            }}
           >
             {/* Glassmorphism circular ainda mais sutil - ajustado para responsividade */}
-            <div className="absolute -inset-4 rounded-full bg-white/2 backdrop-blur-sm border border-primary-violet/5 shadow shadow-primary-violet/5 z-0" />
+            <div className="absolute -inset-4 rounded-full bg-white/2 backdrop-blur-sm border border-primary-violet/5 shadow shadow-primary-violet/5 z-0" style={{overflow: 'visible'}} />
             {/* Glow animado mais suave */}
             <motion.div
               initial={{ opacity: 0.35, scale: 0.97 }}
               animate={{ opacity: [0.35, 0.5, 0.35], scale: [0.97, 1.04, 0.97] }}
               transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
               className="absolute -inset-1.5 rounded-full bg-gradient-to-tr from-primary-violet/40 via-accent-violet/20 to-transparent blur-sm group-hover:scale-105 group-hover:blur transition-all duration-500 z-0"
+              style={{overflow: 'visible'}}
             />
             {/* SVG arco animado */}
-            <svg width="220" height="220" viewBox="0 0 220 220" fill="none" className="absolute -left-8 -top-8 z-0 hidden md:block animate-spin-slow">
+            <svg width="220" height="220" viewBox="0 0 220 220" fill="none" className="absolute -left-8 -top-8 z-0 hidden md:block animate-spin-slow" style={{overflow: 'visible'}}>
               <motion.path
                 d="M210 110c0 55.228-44.772 100-100 100"
                 stroke="#a78bfa"
@@ -109,7 +119,7 @@ const Hero: React.FC = () => {
               src={require('./Captura de tela 2025-05-07 173903.png')}
               alt="Thiago Costa Queiroz"
               className="w-40 h-40 md:w-56 md:h-56 rounded-full object-cover border-4 border-primary-violet shadow-xl shadow-primary-violet/30 bg-dark-gray relative z-10 group-hover:scale-105 transition-transform duration-500"
-              style={{ objectPosition: 'center top' }}
+              style={{ objectPosition: 'center top', objectFit: 'cover', display: 'block', margin: '0 auto', maxWidth: '100%', maxHeight: '100%' }}
               whileHover={{ scale: 1.07 }}
             />
           </motion.div>
@@ -130,7 +140,7 @@ const Hero: React.FC = () => {
               className="text-4xl md:text-6xl font-extrabold mb-2 flex items-center gap-2"
             >
               <span className="text-gradient animate-gradient-move font-mono" style={{letterSpacing: '0.04em', display: 'inline-block'}}>
-                <span className="typing-animation-full">Thiago Costa Queiroz</span>
+                <span className="typing-animation-full">Thiago Queiroz</span>
               </span>
             </motion.h1>
             <motion.p
@@ -159,11 +169,11 @@ const Hero: React.FC = () => {
           border-right: 2px solid #a78bfa;
           white-space: nowrap;
           overflow: hidden;
-          animation: typing-full 2.2s steps(21, end), blink-caret 0.7s step-end infinite;
+          animation: typing-full 2.2s steps(14, end), blink-caret 0.7s step-end infinite;
         }
         @keyframes typing-full {
           from { width: 0 }
-          to { width: 21ch }
+          to { width: 14ch }
         }
         @keyframes blink-caret {
           from, to { border-color: transparent }
