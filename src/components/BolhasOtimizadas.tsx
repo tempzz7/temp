@@ -99,17 +99,43 @@ const BolhasOtimizadas: React.FC = () => {
     };
   };
 
-  // Criar bolhas iniciais
+  // Detectar tamanho da tela para responsividade
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    // Função para verificar se é dispositivo móvel
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    // Verificar inicialmente
+    checkMobile();
+    
+    // Adicionar listener para redimensionamento
+    window.addEventListener('resize', checkMobile);
+    
+    // Limpar listener
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
+  // Criar bolhas iniciais - quantidade adaptada ao tamanho da tela
   useEffect(() => {
     // Esperar um momento para garantir que o container esteja renderizado
     const timer = setTimeout(() => {
-      const novasBolhas: Bolha[] = [];
-      for (let i = 0; i < 12; i++) {
-        const bolha = criarBolha();
-        if (bolha) novasBolhas.push(bolha);
+      if (containerRef.current) {
+        const novasBolhas: Bolha[] = [];
+        // Reduzir a quantidade de bolhas em dispositivos móveis para melhorar o desempenho
+        const quantidadeBolhas = isMobile ? 6 : 15;
+        
+        for (let i = 0; i < quantidadeBolhas; i++) {
+          const novaBolha = criarBolha();
+          if (novaBolha) {
+            novasBolhas.push(novaBolha);
+          }
+        }
+        setBolhas(novasBolhas);
       }
-      setBolhas(novasBolhas);
-    }, 100);
+    }, 500);
     
     return () => clearTimeout(timer);
   }, []);

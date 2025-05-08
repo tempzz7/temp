@@ -104,7 +104,7 @@ const Projetos = () => {  const [repositories, setRepositories] = useState<Repos
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-10">
               {/* Highlighted projects at the top */}
               {[
                 {
@@ -187,9 +187,10 @@ const Projetos = () => {  const [repositories, setRepositories] = useState<Repos
               {repositories.map((repo, index) => (
                 <motion.div
                   key={repo.id}
-                  initial={{ opacity: 1 }}
-                  whileHover={{ y: -5 }}
-                  className="group bg-gradient-to-br from-dark-gray via-dark to-dark-gray border border-primary-violet/20 rounded-xl overflow-hidden relative flex flex-col h-full"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="relative bg-dark-card border border-primary-violet/10 rounded-xl overflow-hidden group hover:border-primary-violet/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary-violet/10 flex flex-col h-full min-h-[280px] sm:min-h-[320px]"
                 >
                   {/* Glass backdrop effect */}
                   <div className="absolute inset-0 bg-dark-gray/30 backdrop-blur-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

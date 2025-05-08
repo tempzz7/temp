@@ -19,9 +19,9 @@ const Hero: React.FC = () => {
     <section id="home" className="min-h-[85vh] flex items-center justify-center bg-dark relative overflow-hidden">
       {/* Background effects - blobs, grid, spotlight, partículas */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-        {/* Blobs multicoloridos animados */}
+        {/* Blobs multicoloridos animados - ajustados para responsividade */}
         <motion.div
-          className="absolute w-[60vw] h-[60vw] min-w-[600px] min-h-[600px] max-w-[1200px] max-h-[1200px] rounded-full blur-[80px]"
+          className="absolute w-[60vw] h-[60vw] min-w-[300px] min-h-[300px] sm:min-w-[400px] sm:min-h-[400px] md:min-w-[600px] md:min-h-[600px] max-w-[1200px] max-h-[1200px] rounded-full blur-[80px]"
           style={{ top: '-18%', left: '-18%', background: 'radial-gradient(circle at 30% 30%, #a78bfa55 0%, #7c3aed22 60%, transparent 100%)' }}
           animate={{
             x: [0, 120, 0, -120, 0],
@@ -32,7 +32,7 @@ const Hero: React.FC = () => {
           transition={{ duration: 32, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div
-          className="absolute w-[50vw] h-[50vw] min-w-[400px] min-h-[400px] max-w-[900px] max-h-[900px] rounded-full blur-[80px]"
+          className="absolute w-[50vw] h-[50vw] min-w-[250px] min-h-[250px] sm:min-w-[300px] sm:min-h-[300px] md:min-w-[400px] md:min-h-[400px] max-w-[900px] max-h-[900px] rounded-full blur-[80px]"
           style={{ bottom: '-15%', right: '-15%', background: 'radial-gradient(circle at 70% 70%, #7c3aed33 0%, #a78bfa18 60%, transparent 100%)' }}
           animate={{
             x: [0, -140, 0, 140, 0],
@@ -42,8 +42,8 @@ const Hero: React.FC = () => {
           }}
           transition={{ duration: 36, repeat: Infinity, ease: 'easeInOut' }}
         />
-        {/* Partículas animadas */}
-        {[...Array(12)].map((_, i) => (
+        {/* Partículas animadas - reduzidas em dispositivos móveis */}
+        {[...Array(window.innerWidth < 768 ? 6 : 12)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-1.5 h-1.5 rounded-full bg-primary-violet/40"
@@ -60,8 +60,8 @@ const Hero: React.FC = () => {
             transition={{ duration: 8 + i, repeat: Infinity, delay: i * 0.5, ease: 'easeInOut' }}
           />
         ))}
-        {/* Spotlight radial focado na foto de perfil */}
-        <div className="absolute z-10 left-1/2 top-[38%] md:top-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] md:w-[520px] md:h-[520px] rounded-full pointer-events-none" style={{
+        {/* Spotlight radial focado na foto de perfil - ajustado para responsividade */}
+        <div className="absolute z-10 left-1/2 top-[38%] md:top-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] md:w-[420px] md:h-[420px] lg:w-[520px] lg:h-[520px] rounded-full pointer-events-none" style={{
           background: 'radial-gradient(circle, #a78bfa22 0%, #0d0d0d 80%)',
           opacity: 0.45,
           filter: 'blur(24px)'
@@ -74,16 +74,16 @@ const Hero: React.FC = () => {
         {/* Overlay escurecedor */}
         <div className="absolute inset-0 bg-gradient-radial from-dark/98 via-dark/92 to-dark/98 opacity-98"></div>
       </div>
-      <div className="container mx-auto px-4 py-20 relative z-10">
-        <div className="flex flex-col md:flex-row items-center justify-center max-w-5xl mx-auto gap-10 md:gap-20">
-          {/* Foto de perfil com glassmorphism e glow animado refinados */}
+      <div className="container mx-auto px-4 py-10 md:py-20 relative z-10">
+        <div className="flex flex-col md:flex-row items-center justify-center max-w-5xl mx-auto gap-8 md:gap-10 lg:gap-20">
+          {/* Foto de perfil com glassmorphism e glow animado refinados - ajustada para responsividade */}
           <motion.div
             initial={{ opacity: 0, x: -40, scale: 0.92 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
             transition={{ delay: 0.15, duration: 0.7 }}
-            className="relative flex-shrink-0 flex justify-center items-center group"
+            className="relative flex-shrink-0 flex justify-center items-center group w-full md:w-auto"
           >
-            {/* Glassmorphism circular ainda mais sutil */}
+            {/* Glassmorphism circular ainda mais sutil - ajustado para responsividade */}
             <div className="absolute -inset-4 rounded-full bg-white/2 backdrop-blur-sm border border-primary-violet/5 shadow shadow-primary-violet/5 z-0" />
             {/* Glow animado mais suave */}
             <motion.div
